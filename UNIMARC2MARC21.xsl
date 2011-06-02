@@ -123,10 +123,7 @@
   <xsl:template name="copy-control">
     <xsl:param name="tag"/>
     <xsl:for-each select="controlfield[@tag=$tag]">
-      <controlfield>
-        <xsl:attribute name="tag">
-          <xsl:value-of select="$tag"/>
-        </xsl:attribute>
+      <controlfield tag="{$tag}">
         <xsl:value-of select="text()"/>
       </controlfield>
     </xsl:for-each>
@@ -156,10 +153,7 @@
     <xsl:param name="dstCodes"/>
     <xsl:if test="datafield[@tag=$srcTag]/subfield[contains($srcCodes, @code)]">
       <xsl:for-each select="datafield[@tag=$srcTag]">
-        <datafield>
-          <xsl:attribute name="tag">
-            <xsl:value-of select="$dstTag"/>
-          </xsl:attribute>
+        <datafield tag="{$dstTag}">
           <xsl:call-template name="copy-indicators"/>
           <xsl:call-template name="transform-subfields">
             <xsl:with-param name="srcCodes" select="$srcCodes"/>
@@ -174,14 +168,7 @@
     <xsl:param name="dstTag"/>
 
     <xsl:for-each select="datafield[@tag=$srcTag]">
-      <datafield>
-        <xsl:attribute name="tag">
-          <xsl:value-of select="$dstTag"/>
-        </xsl:attribute>
-        <xsl:attribute name="ind1">
-          <xsl:value-of select="@ind2"/>
-        </xsl:attribute>
-        <xsl:attribute name="ind2" />
+      <datafield tag="{$dstTag}" ind1="{@ind2}" ind2="">
         <xsl:call-template name="transform-subfields">
           <xsl:with-param name="srcCodes" select="'acdfpg'"/>
           <xsl:with-param name="dstCodes" select="'acbduq'"/>
@@ -201,10 +188,7 @@
     <xsl:param name="srcCodes">abcdefghijklmnopqrstuvwxyz</xsl:param>
     <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:for-each select="subfield[contains($srcCodes, @code)]">
-      <subfield>
-        <xsl:attribute name="code">
-          <xsl:value-of select="translate(@code, $srcCodes, $dstCodes)"/>
-        </xsl:attribute>
+      <subfield code="{translate(@code, $srcCodes, $dstCodes)}">
         <xsl:value-of select="text()"/>
       </subfield>
     </xsl:for-each>
