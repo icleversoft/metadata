@@ -73,6 +73,12 @@
       <xsl:with-param name="dstCodes">abce</xsl:with-param>
     </xsl:call-template>
 
+    <!-- 610->653 -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">610</xsl:with-param>
+      <xsl:with-param name="dstTag">653</xsl:with-param>
+    </xsl:call-template>
+
     <!-- 615->650 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">615</xsl:with-param>
