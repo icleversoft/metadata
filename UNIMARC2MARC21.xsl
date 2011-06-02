@@ -170,8 +170,8 @@
     <xsl:for-each select="datafield[@tag=$srcTag]">
       <datafield tag="{$dstTag}" ind1="{@ind2}" ind2="">
         <xsl:call-template name="transform-subfields">
-          <xsl:with-param name="srcCodes" select="'acdfpg'"/>
-          <xsl:with-param name="dstCodes" select="'acbduq'"/>
+          <xsl:with-param name="srcCodes" select="'acdfgp4'"/>
+          <xsl:with-param name="dstCodes" select="'acbdqu4'"/>
         </xsl:call-template>
       </datafield>
     </xsl:for-each>
