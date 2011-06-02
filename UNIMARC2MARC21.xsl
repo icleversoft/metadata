@@ -35,6 +35,11 @@
   </xsl:template>
 
   <xsl:template name="record">
+    <xsl:if test="@type">
+      <xsl:attribute name="type">
+        <xsl:value-of select="@type"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="transform-leader"/>
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">001</xsl:with-param>
