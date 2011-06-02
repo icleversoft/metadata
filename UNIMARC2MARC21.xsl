@@ -149,8 +149,8 @@
   <xsl:template name="transform-datafield">
     <xsl:param name="srcTag"/>
     <xsl:param name="dstTag" select="@srcTag"/>
-    <xsl:param name="srcCodes"/>
-    <xsl:param name="dstCodes"/>
+    <xsl:param name="srcCodes" select="$all-codes"/>
+    <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:if test="datafield[@tag=$srcTag]/subfield[contains($srcCodes, @code)]">
       <xsl:for-each select="datafield[@tag=$srcTag]">
         <datafield tag="{$dstTag}">
@@ -185,7 +185,7 @@
     </xsl:attribute>
   </xsl:template>
   <xsl:template name="transform-subfields">
-    <xsl:param name="srcCodes">abcdefghijklmnopqrstuvwxyz</xsl:param>
+    <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:for-each select="subfield[contains($srcCodes, @code)]">
       <subfield code="{translate(@code, $srcCodes, $dstCodes)}">
@@ -194,6 +194,7 @@
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:variable name="all-codes">abcdefghijklmnopqrstuvwxyz123456789</xsl:variable>
   <msxml:script implements-prefix="js">
     function part(source : String, from : int, to : int)
     {
